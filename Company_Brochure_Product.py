@@ -72,6 +72,74 @@ link_system_prompt += """
         {"type": "careers page": "url": "https://another.full.url/careers"}
     ]
 }
+
+# Now respond in the same format based on the next list of links:
+Relative links (e.g. "/about") must be converted to full URLs using the base domain provided.
+
+---
+
+### Example 1
+Base URL: https://company.com  
+Links:
+[
+    "/about",
+    "/services",
+    "/jobs",
+    "/contact-us"
+]
+
+Response:
+{
+    "links": [
+        {"type": "about page", "url": "https://company.com/about"},
+        {"type": "careers page", "url": "https://company.com/jobs"}
+    ]
+}
+
+---
+
+### Example 2
+Base URL: https://startup.io  
+Links:
+[
+    "/careers",
+    "/blog",
+    "/privacy-policy",
+    "/our-team"
+]
+
+Response:
+{
+    "links": [
+        {"type": "careers page", "url": "https://startup.io/careers"},
+        {"type": "about page", "url": "https://startup.io/our-team"}
+    ]
+}
+
+---
+
+### Example 3
+Base URL: https://example.org  
+Links:
+[
+    "https://example.org/about-us",
+    "https://example.org/solutions",
+    "https://example.org/culture",
+    "https://example.org/products",
+    "https://example.org/categories",
+]
+
+Response:
+{
+    "links": [
+        {"type": "about page", "url": "https://example.org/about-us"},
+        {"type": "about page", "url": "https://example.org/culture"}
+    ]
+}
+
+---
+Now respond in the same format based on the next base URL and list of links:
+
 """
 
 def get_links_user_prompt(website):
